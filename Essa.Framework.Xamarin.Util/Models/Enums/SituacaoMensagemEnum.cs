@@ -1,4 +1,4 @@
-﻿namespace Essa.Framework.XamarinUtil.Models.Enums
+﻿namespace Essa.Framework.Util.Models.Enums
 {
     public enum SituacaoMensagemEnum
     {

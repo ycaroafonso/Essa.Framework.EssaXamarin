@@ -1,9 +1,9 @@
-﻿namespace Essa.Framework.XamarinUtil.Util
+﻿namespace Essa.Framework.Util.Util
 {
-    using Essa.Framework.XamarinUtil.Extensions;
+    using Essa.Framework.Util.Extensions;
     using System;
     using System.Collections.Generic;
-    using static Essa.Framework.XamarinUtil.Util.TabelaEmTextoColuna;
+    using static Essa.Framework.Util.Util.TabelaEmTextoColuna;
 
 
     public interface ITabelaEmTextoAddColuna

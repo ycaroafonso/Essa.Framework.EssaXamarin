@@ -1,4 +1,4 @@
-﻿namespace Essa.Framework.XamarinUtil.Converter
+﻿namespace Essa.Framework.Util.Converter
 {
     using System;
     using System.Globalization;

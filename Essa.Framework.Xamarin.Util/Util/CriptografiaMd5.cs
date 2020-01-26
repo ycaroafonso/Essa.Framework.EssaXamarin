@@ -1,4 +1,4 @@
-﻿namespace Essa.Framework.XamarinUtil.Util
+﻿namespace Essa.Framework.Util.Util
 {
     using System.IO;
     using System.Linq;

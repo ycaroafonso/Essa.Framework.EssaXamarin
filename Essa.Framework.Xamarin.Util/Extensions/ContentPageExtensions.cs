@@ -1,6 +1,6 @@
-﻿namespace Essa.Framework.XamarinUtil.Extensions
+﻿namespace Essa.Framework.Util.Extensions
 {
-    using Essa.Framework.XamarinUtil.Interface;
+    using Essa.Framework.Util.Interface;
     using System.Threading.Tasks;
     using Xamarin.Forms;
 

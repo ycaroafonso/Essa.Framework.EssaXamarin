@@ -1,6 +1,6 @@
 ﻿using SQLite;
 
-namespace Essa.Framework.XamarinUtil.Repository
+namespace Essa.Framework.Util.Repository
 {
     public interface IDatabaseHelper
     {

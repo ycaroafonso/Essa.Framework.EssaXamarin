@@ -1,6 +1,6 @@
 ﻿using SQLite;
 
-namespace Essa.Framework.XamarinUtil.Interface
+namespace Essa.Framework.Util.Interface
 {
     public interface ISQLite
     {

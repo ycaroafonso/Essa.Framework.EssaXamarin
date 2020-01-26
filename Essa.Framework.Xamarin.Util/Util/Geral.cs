@@ -1,4 +1,4 @@
-﻿namespace Essa.Framework.XamarinUtil
+﻿namespace Essa.Framework.Util
 {
     using System;
     using System.Collections.Generic;

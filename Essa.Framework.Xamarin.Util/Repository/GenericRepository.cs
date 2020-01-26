@@ -1,4 +1,4 @@
-﻿namespace Essa.Framework.XamarinUtil.Repository
+﻿namespace Essa.Framework.Util.Repository
 {
     using SQLite;
     using System.Collections.Generic;

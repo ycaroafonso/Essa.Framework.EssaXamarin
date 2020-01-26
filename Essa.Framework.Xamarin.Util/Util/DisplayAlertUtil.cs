@@ -1,7 +1,7 @@
-﻿namespace Essa.Framework.XamarinUtil.Util
+﻿namespace Essa.Framework.Util.Util
 {
-    using Essa.Framework.XamarinUtil.Interface;
-    using Essa.Framework.XamarinUtil.Models.Enums;
+    using Essa.Framework.Util.Interface;
+    using Essa.Framework.Util.Models.Enums;
 
     public class DisplayAlertUtil : IDisplayAlert
     {

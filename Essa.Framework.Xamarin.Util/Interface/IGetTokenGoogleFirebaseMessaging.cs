@@ -1,4 +1,4 @@
-﻿namespace Essa.Framework.XamarinUtil.Interface
+﻿namespace Essa.Framework.Util.Interface
 {
     public interface IGetTokenGoogleFirebaseMessaging
     {

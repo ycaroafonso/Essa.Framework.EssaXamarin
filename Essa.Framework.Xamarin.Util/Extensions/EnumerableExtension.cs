@@ -1,4 +1,4 @@
-﻿namespace Essa.Framework.XamarinUtil.Extensions
+﻿namespace Essa.Framework.Util.Extensions
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
