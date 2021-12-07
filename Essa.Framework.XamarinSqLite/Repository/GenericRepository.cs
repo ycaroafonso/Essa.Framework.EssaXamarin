@@ -1,25 +1,20 @@
-﻿namespace Essa.Framework.Util.Repository
+﻿namespace Essa.Framework.XamarinSqLite.Repository
 {
     using SQLite;
     using System.Collections.Generic;
+    
 
     public abstract class GenericRepository<T> : IGenericRepository<T>
         where T : class
     {
         protected SQLiteConnection Contexto;
         protected readonly object locker;
-        protected readonly IDatabaseHelper _db;
 
-        public GenericRepository(IDatabaseHelper db) : this(db.database, db.locker)
+        public GenericRepository(IDatabaseHelper db)
         {
-            this._db = db;
-        }
+            Contexto = db.database;
 
-        public GenericRepository(SQLiteConnection contexto, object plocker)
-        {
-            Contexto = contexto;
-
-            this.locker = plocker;
+            locker = db.locker;
 
             Contexto.CreateTable<T>();
         }

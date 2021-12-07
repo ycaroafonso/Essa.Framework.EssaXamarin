@@ -24,6 +24,7 @@
     public interface ITabelaEmTextoAddLinha
     {
         ITabelaEmTextoAddLinha AddRowCell(DateTime v);
+        ITabelaEmTextoAddLinha AddRowCell(DateTime? v);
         ITabelaEmTextoAddLinha AddRowCell(int v);
         ITabelaEmTextoAddLinha AddRowCell(string v);
         ITabelaEmTextoAddLinha AddRowCell(bool v);
@@ -137,6 +138,11 @@
             return AddRowCell(v.ToString(), _indexCol++);
         }
 
+        public ITabelaEmTextoAddLinha AddRowCell(DateTime? v)
+        {
+            if (v == null) return AddRowCell("", _indexCol++);
+            return AddRowCell(v.Value);
+        }
         public ITabelaEmTextoAddLinha AddRowCell(DateTime v)
         {
             if (v.Hour == 0 && v.Minute == 0)

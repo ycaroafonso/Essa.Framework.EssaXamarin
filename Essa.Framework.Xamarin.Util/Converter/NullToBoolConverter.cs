@@ -1,13 +1,9 @@
 ﻿namespace Essa.Framework.Util.Converter
 {
+    using global::Xamarin.Forms;
     using System;
     using System.Globalization;
 
-
-    public interface IValueConverter
-    {
-
-    }
 
     public class NullToBoolConverter : IValueConverter
     {

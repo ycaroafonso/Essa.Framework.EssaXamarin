@@ -1,4 +1,4 @@
-namespace Essa.Framework.Util.Util.Hash
+﻿namespace Essa.Framework.Util.Util.Hash
 {
     public interface IGeraHash
     {
@@ -13,5 +13,7 @@ namespace Essa.Framework.Util.Util.Hash
         bool IsHashValido(string hashParametro);
 
         void ValidaHash(string hashParametro);
+
+        void ValidaHash();
     }
 }
