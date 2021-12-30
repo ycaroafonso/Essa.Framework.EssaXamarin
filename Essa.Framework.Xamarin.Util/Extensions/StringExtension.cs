@@ -604,7 +604,7 @@
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < hash.Length; i++)
             {
-                sb.Append(hash[i].ToString("x2"));
+                sb.Append(hash[i].ToString("X2"));
             }
             return sb.ToString();
         }
@@ -802,23 +802,24 @@
 
         public static string SubstringComReticencia(this string valor, int qtde)
         {
-            if (valor.Length > qtde)
-                return string.Concat(valor.Substring(0, qtde), "...");
+            if (valor.Length - 3 >= qtde - 1)
+                return string.Concat(valor.Substring(0, qtde - 3), "...");
             return valor;
         }
 
         public static string SubstringInverso(this string valor, int qtde)
         {
-            if (valor.Length > qtde)
+            if (valor.Length >= qtde - 1)
                 return valor.Substring(valor.Length - qtde);
             return valor;
         }
         public static string SubstringInversoComReticencia(this string valor, int qtde)
         {
-            if (valor.Length > qtde)
+            if (valor.Length >= qtde - 1)
                 return string.Concat("...", valor.SubstringInverso(qtde - 3));
             return valor;
         }
+
 
         public static string PadRight(this string valor, int totalWidth, string valorRepetir)
         {
@@ -829,9 +830,6 @@
         }
         public static string PadRightComReticencia(this string valor, int totalWidth, char valorRepetir = ' ')
         {
-            if (valor.Length > totalWidth)
-                return valor.SubstringComReticencia(totalWidth - 3).PadRight(totalWidth, valorRepetir);
-
             return valor.SubstringComReticencia(totalWidth).PadRight(totalWidth, valorRepetir);
         }
 

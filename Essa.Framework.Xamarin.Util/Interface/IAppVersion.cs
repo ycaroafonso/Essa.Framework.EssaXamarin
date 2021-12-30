@@ -4,5 +4,11 @@
     {
         string GetVersion();
         string GetBuild();
+
+
+        string GetModoDesenvolvedor();
+
+        string GetAutoTime();
+        string GetAutoTimeZone();
     }
 }

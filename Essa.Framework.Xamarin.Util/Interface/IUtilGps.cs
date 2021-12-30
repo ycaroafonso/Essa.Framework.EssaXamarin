@@ -2,8 +2,8 @@
 {
     public interface IUtilGps
     {
-        bool IsProviderEnabled { get; }
+        bool IsGpsAtivo { get; }
 
-        void AbrirConfiguracao();
+        void AbrirTelaDeConfiguracaoParaAtivacaoManualDoGps();
     }
 }

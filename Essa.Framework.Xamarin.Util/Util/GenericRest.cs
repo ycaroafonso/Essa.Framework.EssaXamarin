@@ -1,9 +1,9 @@
 ﻿namespace Essa.Framework.Util.Util
 {
-    using Essa.Framework.Util.Extensions;
     using Flurl;
     using Flurl.Http;
     using Flurl.Http.Content;
+    using Essa.Framework.Util.Extensions;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
