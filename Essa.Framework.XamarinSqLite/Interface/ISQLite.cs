@@ -7,6 +7,9 @@
     {
         string Arquivo { get; }
 
-        SQLiteConnection GetConnection();
+
+
+        SQLiteConnection GetConnectionLocalApplicationData();
+        SQLiteConnection GetConnectionPersonal();
     }
 }
