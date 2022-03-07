@@ -32,8 +32,7 @@
         }
 
 
-
-        protected async Task<T> GetOneAsync<T>(string path, object parametros = null)
+        protected Url MontarUrl(string path, object parametros = null)
         {
             Url url = Servidor;
             url.AppendPathSegments(_controllerUrl, path);
@@ -42,6 +41,12 @@
             if (parametros != null)
                 url.SetQueryParams(parametros);
 
+            return url;
+        }
+
+        protected async Task<T> GetOneAsync<T>(string path, object parametros = null)
+        {
+            Url url = MontarUrl(path, parametros);
             T ret;
 
             if (!string.IsNullOrEmpty(_token))
@@ -55,12 +60,7 @@
 
         protected async Task<IList<dynamic>> GetListAsync(string path, object parametros = null)
         {
-            Url url = Servidor;
-            url.AppendPathSegments(_controllerUrl, path);
-
-
-            if (parametros != null)
-                url.SetQueryParams(parametros);
+            Url url = MontarUrl(path, parametros);
 
             if (!string.IsNullOrEmpty(_token))
                 return await url.WithOAuthBearerToken(_token).GetJsonListAsync();
@@ -71,8 +71,7 @@
 
         protected async Task<T> Put<T>(string path, object obj)
         {
-            Url url = Servidor;
-            url.AppendPathSegments(_controllerUrl, path);
+            Url url = MontarUrl(path);
 
             Task<IFlurlResponse> ret;
 
@@ -95,8 +94,7 @@
             string json = obj.ToJson();
 #endif
 
-            Url url = Servidor;
-            url.AppendPathSegments(_controllerUrl, path);
+            Url url = MontarUrl(path);
 
             Task<IFlurlResponse> ret;
 
@@ -165,8 +163,7 @@
         protected async Task<T> Post<T>(string path, Action<CapturedMultipartContent> buildContent)
             where T : class
         {
-            Url url = Servidor;
-            url.AppendPathSegments(_controllerUrl, path);
+            Url url = MontarUrl(path);
 
             IFlurlResponse ret;
 

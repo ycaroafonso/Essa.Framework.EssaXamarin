@@ -1,10 +1,10 @@
-﻿namespace Essa.Framework.Util.Extensions
+﻿using Essa.Framework.Util.Interface;
+using Essa.Framework.Util.Models;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+
+namespace Essa.Framework.Util.Extensions
 {
-    using Essa.Framework.Util.Interface;
-    using System.Threading.Tasks;
-    using Xamarin.Forms;
-
-
     public static class ContentPageExtensions
     {
 
