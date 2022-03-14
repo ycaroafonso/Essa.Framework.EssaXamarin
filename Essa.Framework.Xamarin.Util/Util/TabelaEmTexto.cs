@@ -5,7 +5,6 @@
     using System.Collections.Generic;
     using static Essa.Framework.Util.Util.TabelaEmTextoColuna;
 
-
     public interface ITabelaEmTextoAddColuna
     {
 
@@ -25,6 +24,7 @@
     {
         ITabelaEmTextoAddLinha AddRowCell(DateTime v);
         ITabelaEmTextoAddLinha AddRowCell(DateTime? v);
+        ITabelaEmTextoAddLinha AddRowCell(decimal v);
         ITabelaEmTextoAddLinha AddRowCell(int v);
         ITabelaEmTextoAddLinha AddRowCell(string v);
         ITabelaEmTextoAddLinha AddRowCell(bool v);
@@ -121,6 +121,11 @@
             }
 
             return this;
+        }
+
+        public ITabelaEmTextoAddLinha AddRowCell(decimal v)
+        {
+            return AddRowCell(v.ToString("N2"), _indexCol++);
         }
 
         public ITabelaEmTextoAddLinha AddRowCell(int v)
