@@ -72,9 +72,10 @@
         {
             Url url = MontarUrl(path, parametros);
 
-            var ret = (await url.GetStringAsync()).ToOjectFromJson<List<T>>();
-
-            return ret;
+            if (!string.IsNullOrEmpty(_token))
+                return (await url.WithOAuthBearerToken(_token).GetStringAsync()).ToOjectFromJson<List<T>>();
+            else
+                return (await url.GetStringAsync()).ToOjectFromJson<List<T>>();
         }
 
         protected async Task<T> Put<T>(string path, object obj)
@@ -133,10 +134,11 @@
 
             Task<IFlurlResponse> ret;
 
+            IFlurlResponse ret2;
             if (!string.IsNullOrEmpty(_token))
-                url.WithOAuthBearerToken(_token);
-
-            var ret2 = await url.PostJsonAsync(obj);
+                ret2 = await url.WithOAuthBearerToken(_token).PostJsonAsync(obj);
+            else
+                ret2 = await url.PostJsonAsync(obj);
 
             IsSuccessStatusCode = ret2.StatusCode >= 200 && ret2.StatusCode <= 299;
         }
