@@ -68,6 +68,14 @@
                 return await url.GetJsonListAsync();
         }
 
+        public async Task<List<T>> GetListAsync<T>(string path, object parametros = null) where T : class
+        {
+            Url url = MontarUrl(path, parametros);
+
+            var ret = (await url.GetStringAsync()).ToOjectFromJson<List<T>>();
+
+            return ret;
+        }
 
         protected async Task<T> Put<T>(string path, object obj)
         {
@@ -84,6 +92,11 @@
 
             return await ret.ReceiveJson<T>();
         }
+
+
+
+
+
 
 
 
@@ -106,6 +119,26 @@
             IsSuccessStatusCode = ret.IsCompleted;
 
             return await ret.ReceiveJson<T>();
+        }
+
+
+
+        protected async Task Post(string path, object obj)
+        {
+#if DEBUG
+            string json = obj.ToJson();
+#endif
+
+            Url url = MontarUrl(path);
+
+            Task<IFlurlResponse> ret;
+
+            if (!string.IsNullOrEmpty(_token))
+                url.WithOAuthBearerToken(_token);
+
+            var ret2 = await url.PostJsonAsync(obj);
+
+            IsSuccessStatusCode = ret2.StatusCode >= 200 && ret2.StatusCode <= 299;
         }
 
 
@@ -174,6 +207,7 @@
 
             return await ret.GetJsonAsync<T>();
         }
+
 
 
     }
