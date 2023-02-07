@@ -7,6 +7,19 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Flurl.Http.Configuration;
+    using System.Net.Http;
+
+    public class UntrustedCertClientFactory : DefaultHttpClientFactory
+    {
+        public override HttpMessageHandler CreateMessageHandler()
+        {
+            return new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = (_a, _b, _c, _d) => true
+            };
+        }
+    }
 
 
     public class GenericRest
@@ -23,6 +36,12 @@
             Servidor = servidor;
 
             _controllerUrl = controllerUrl;
+
+
+            FlurlHttp.ConfigureClient(Servidor, cli =>
+            cli.Settings.HttpClientFactory = new UntrustedCertClientFactory());
+
+
         }
 
         string _token = null;
@@ -42,6 +61,19 @@
                 url.SetQueryParams(parametros);
 
             return url;
+        }
+
+        protected async Task<string> GetStringAsync(string path, object parametros = null)
+        {
+            Url url = MontarUrl(path, parametros);
+            string ret;
+
+            if (!string.IsNullOrEmpty(_token))
+                ret = await url.WithOAuthBearerToken(_token).GetStringAsync();
+            else
+                ret = await url.GetStringAsync();
+
+            return ret;
         }
 
         protected async Task<T> GetOneAsync<T>(string path, object parametros = null)
@@ -102,7 +134,7 @@
 
 
 
-        protected async Task<T> Post<T>(string path, object obj)
+        public async Task<T> Post<T>(string path, object obj)
         {
 #if DEBUG
             string json = obj.ToJson();
