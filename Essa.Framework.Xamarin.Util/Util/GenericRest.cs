@@ -62,6 +62,17 @@
 
             return url;
         }
+        protected void MontarUrlV2(string path, object parametros = null)
+        {
+            Url url = Servidor;
+            url.AppendPathSegments(_controllerUrl, path);
+
+
+            if (parametros != null)
+                url.SetQueryParams(parametros);
+
+            _url = new FlurlRequest(url);
+        }
 
         protected async Task<string> GetStringAsync(string path, object parametros = null)
         {
@@ -100,6 +111,12 @@
                 return await url.GetJsonListAsync();
         }
 
+
+
+
+
+
+        protected FlurlRequest _url;
         public async Task<List<T>> GetListAsync<T>(string path, object parametros = null) where T : class
         {
             Url url = MontarUrl(path, parametros);
@@ -109,6 +126,19 @@
             else
                 return (await url.GetStringAsync()).ToOjectFromJson<List<T>>();
         }
+        protected async Task<List<T>> GetListAsync<T>() where T : class
+        {
+            if (!string.IsNullOrEmpty(_token))
+                return (await _url.WithOAuthBearerToken(_token).GetStringAsync()).ToOjectFromJson<List<T>>();
+            else
+                return (await _url.GetStringAsync()).ToOjectFromJson<List<T>>();
+        }
+
+
+
+
+
+
 
         protected async Task<T> Put<T>(string path, object obj)
         {
