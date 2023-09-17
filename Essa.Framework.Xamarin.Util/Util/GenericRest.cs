@@ -125,6 +125,18 @@ namespace Essa.Framework.Util.Util
             return ret;
         }
 
+        protected async Task<T> GetOneAsync<T>(object parametros = null)
+        {
+            T ret;
+
+            if (!string.IsNullOrEmpty(_token))
+                ret = await _url.WithOAuthBearerToken(_token).GetJsonAsync<T>();
+            else
+                ret = await _url.GetJsonAsync<T>();
+
+            return ret;
+        }
+
 
         protected async Task<IList<dynamic>> GetListAsync(string path, object parametros = null)
         {
@@ -218,7 +230,7 @@ namespace Essa.Framework.Util.Util
             }
         }
 
-        public async Task<T> Post<T>(object obj)
+        public async Task<T> Post<T>(object obj = null)
         {
             try
             {
@@ -331,6 +343,20 @@ namespace Essa.Framework.Util.Util
                 ret = await url.WithOAuthBearerToken(_token).PostMultipartAsync(mp => buildContent(mp));
             else
                 ret = await url.PostMultipartAsync(mp => buildContent(mp));
+
+            return await ret.GetJsonAsync<T>();
+        }
+
+
+        protected async Task<T> Post<T>(Action<CapturedMultipartContent> buildContent)
+            where T : class
+        {
+            IFlurlResponse ret;
+
+            if (!string.IsNullOrEmpty(_token))
+                ret = await _url.WithOAuthBearerToken(_token).PostMultipartAsync(mp => buildContent(mp));
+            else
+                ret = await _url.PostMultipartAsync(mp => buildContent(mp));
 
             return await ret.GetJsonAsync<T>();
         }
